@@ -60,11 +60,13 @@ class Program
         PhilosopherList.Add(Plato);
 
         // Display available philosophers
-        Console.WriteLine($"{FNietzsche.Id}: {FNietzsche.Name} - {FNietzsche.Quotes.Length} Quotes");
-        Console.WriteLine($"{CJung.Id}: {CJung.Name} - {CJung.Quotes.Length} Quotes");
-        Console.WriteLine($"{RDescartes.Id}: {RDescartes.Name} - {RDescartes.Quotes.Length} Quotes");
-        Console.WriteLine($"{IKant.Id}: {IKant.Name} - {IKant.Quotes.Length} Quotes");
-        Console.WriteLine($"{Plato.Id}: {Plato.Name} - {Plato.Quotes.Length} Quotes" + "\n");
+        if (PhilosopherList.Count > 0)
+        {
+            foreach (Philosopher p in PhilosopherList)
+            {
+                Console.WriteLine($"{p.Id}: {p.Name} - {p.Quotes.Length} Quotes");
+            }
+        }
 
         // Get user selection
         UserInput userInp = new UserInput();
