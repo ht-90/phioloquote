@@ -1,8 +1,10 @@
-﻿class Program
+namespace Classes;
+
+class Program
 {
     static void Main(string[] args)
     {
-        // Generate dataset
+        //Generate Dataset
         Philosopher FNietzsche = new Philosopher(
             1, "Friedrich Nietzsche", "Germany", "1844-1900",
             new string[] {
@@ -48,6 +50,14 @@
                 "Opinion is the medium between knowledge and ignorance."
             }
         );
+
+        // Collect all the data into a single list
+        List<Philosopher> PhilosopherList = new List<Philosopher>();
+        PhilosopherList.Add(FNietzsche);
+        PhilosopherList.Add(CJung);
+        PhilosopherList.Add(RDescartes);
+        PhilosopherList.Add(IKant);
+        PhilosopherList.Add(Plato);
 
         // Display available philosophers
         Console.WriteLine($"{FNietzsche.Id}: {FNietzsche.Name} - {FNietzsche.Quotes.Length} Quotes");
