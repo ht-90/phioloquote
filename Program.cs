@@ -1,8 +1,10 @@
-﻿class Program
+namespace Classes;
+
+class Program
 {
     static void Main(string[] args)
     {
-        // Generate dataset
+        //Generate Dataset
         Philosopher FNietzsche = new Philosopher(
             1, "Friedrich Nietzsche", "Germany", "1844-1900",
             new string[] {
@@ -49,38 +51,36 @@
             }
         );
 
+        // Collect all the data into a single list
+        List<Philosopher> PhilosopherList = new List<Philosopher>();
+        PhilosopherList.Add(FNietzsche);
+        PhilosopherList.Add(CJung);
+        PhilosopherList.Add(RDescartes);
+        PhilosopherList.Add(IKant);
+        PhilosopherList.Add(Plato);
+
         // Display available philosophers
-        Console.WriteLine($"{FNietzsche.Id}: {FNietzsche.Name} - {FNietzsche.Quotes.Length} Quotes");
-        Console.WriteLine($"{CJung.Id}: {CJung.Name} - {CJung.Quotes.Length} Quotes");
-        Console.WriteLine($"{RDescartes.Id}: {RDescartes.Name} - {RDescartes.Quotes.Length} Quotes");
-        Console.WriteLine($"{IKant.Id}: {IKant.Name} - {IKant.Quotes.Length} Quotes");
-        Console.WriteLine($"{Plato.Id}: {Plato.Name} - {Plato.Quotes.Length} Quotes" + "\n");
+        if (PhilosopherList.Count > 0)
+        {
+            foreach (Philosopher p in PhilosopherList)
+            {
+                Console.WriteLine($"{p.Id}: {p.Name} - {p.Quotes.Length} Quotes");
+            }
+        }
 
         // Get user selection
         UserInput userInp = new UserInput();
         int selectNum = userInp.getNum();
 
-        // Display quotes
-        switch (selectNum)
+        //Use the selectNum to filter for the particular person
+        Philosopher? result = PhilosopherList.Where(x => x.Id == selectNum).FirstOrDefault();
+
+        if (result == null)
         {
-            case 1:
-                FNietzsche.stateQuote();
-                break;
-            case 2:
-                CJung.stateQuote();
-                break;
-            case 3:
-                RDescartes.stateQuote();
-                break;
-            case 4:
-                IKant.stateQuote();
-                break;
-            case 5:
-                Plato.stateQuote();
-                break;
-            default:
-                Console.WriteLine("Not a valid selection ;_;" + "\n");
-                break;
+            Console.WriteLine("Sorry - but there are no results");
+            return;
         }
+
+        result.stateQuote();
     }
 }
