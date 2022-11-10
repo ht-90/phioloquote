@@ -1,10 +1,12 @@
-class Philosopher
+namespace Classes;
+
+public class Philosopher
 {
-    public int Id;
-    public string Name;
-    public string Born;
-    public string Lived;
-    public string[] Quotes;
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Born { get; set; }
+    public string Lived { get; set; }
+    public string[] Quotes { get; set; }
 
     public Philosopher(int id, string name, string born, string lived, string[] quotes)
     {
