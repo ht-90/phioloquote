@@ -72,27 +72,15 @@ class Program
         UserInput userInp = new UserInput();
         int selectNum = userInp.getNum();
 
-        // Display quotes
-        switch (selectNum)
+        //Use the selectNum to filter for the particular person
+        Philosopher? result = PhilosopherList.Where(x => x.Id == selectNum).FirstOrDefault();
+
+        if (result == null)
         {
-            case 1:
-                FNietzsche.stateQuote();
-                break;
-            case 2:
-                CJung.stateQuote();
-                break;
-            case 3:
-                RDescartes.stateQuote();
-                break;
-            case 4:
-                IKant.stateQuote();
-                break;
-            case 5:
-                Plato.stateQuote();
-                break;
-            default:
-                Console.WriteLine("Not a valid selection ;_;" + "\n");
-                break;
+            Console.WriteLine("Sorry - but there are no results");
+            return;
         }
+
+        result.stateQuote();
     }
 }
