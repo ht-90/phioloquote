@@ -1,4 +1,5 @@
-.tmnp
+.tmp
+.vscode
 
 bin/
 obj/
